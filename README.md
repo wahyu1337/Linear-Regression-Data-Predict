@@ -1,4 +1,5 @@
 # Linear-Regression-Data-Predict
 An application to predict a results (data science)
 
-Only tested on rice production
+- Only tested on rice production
+- Used languange = "English/Indonesian"
