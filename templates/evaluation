@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hasil Prediksi Regresi Linear</title>
+  </head>
+  <body>
+    <h1>Hasil Evaluasi Regresi Linear dengan Koefesien Determinasi R-squared: {{ evaluation.koefisien }}</h11>
+    <h1>------------------------Hasil Prediksi------------------------</h1>
+    <h1>Prediksi Produksi: {{ evaluation.produksi }}</h1>
+  </body>
+</html>
