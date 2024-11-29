@@ -9,7 +9,7 @@ import os
 app = Flask(__name__)
 app.secret_key = 'regresi_linear'
 
-# Create dataset directory if it doesn't exist
+# Create dataset directory if it doesn't exist / Membuat Dataset direktori jika belum ada
 if not os.path.exists('dataset'):
     os.makedirs('dataset')
 
@@ -26,23 +26,23 @@ def upload_file():
         file.save(filepath)
         data = pd.read_csv(filepath)
 
-        # Extract features and target
+        # Extract features and target / Ekstraksi fitur dan target
         Fitur = data[['Luas Panen', 'Curah hujan', 'Kelembapan', 'Suhu rata-rata']]
         Target = data['Produksi']
 
-        # Split data into training and testing
+        # Split data into training and testing / Membagi dua data ke train dan test
         Fitur_train, Fitur_test, Target_train, Target_test = train_test_split(
             Fitur, Target, test_size=float(form['data_uji']), random_state=42)
 
-        # Train the model
+        # Train the model / Melatih data model
         model = LinearRegression(fit_intercept=True)
         model.fit(Fitur_train, Target_train)
 
-        # Model evaluation
+        # Model evaluation / model evaluasi
         Target_pred = model.predict(Fitur_test)
         r2 = r2_score(Target_test, Target_pred)
 
-        # Prediction input
+        # Prediction input / Menginput data yang diprediksi
         luas_panen = float(form['M2'])
         curah_hujan = float(form['mm'])
         kelembapan = float(form['%'])
@@ -53,7 +53,7 @@ def upload_file():
         )
         hasil_prediksi = model.predict(input_data)
 
-        # Store results in session
+        # Store results in session / Menyimpan hasil ke SESSION
         session['hasil_evaluasi'] = {
             'koefisien': round(r2, 3),
             'produksi': f"Prediksi produksi: {round(hasil_prediksi[0], 2)} Kg"
